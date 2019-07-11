@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+    let playerScore = 0;
+    let computerScore = 0;
+    let winner = '';
+    let loser = '';
+    
+    function computerPlay() {
+      let choices = [`rock`, `paper`, `scissors`];
+      let randomNumber = Math.floor(Math.random() * 3) ;
+      return choices[randomNumber];
+    }
+
+       
+    function round(playerSelection, computerSelection) {
+      if (playerSelection == computerSelection) {
+        return "That's what the computer chose. This round is a tie."
+      }
+      else if (playerSelection == "rock" && computerSelection == "scissors") {
+        playerScore++;
+        return "Nice, the computer chose scissors. You smash it and win!"
+      }
+      else if (playerSelection == "rock" && computerSelection == "paper") {
+        computerScore++;
+        return "Too bad. The computer picked paper and wrapped you up. You lose!"
+      }
+      else if (playerSelection == "scissors" && computerSelection == "rock") {
+        computerScore++;
+        return "The computer's rock smashed you up. You lose!"
+      }
+      else if (playerSelection == "scissors" && computerSelection == "paper") {
+        playerScore++;
+        return "You snip-snap snip-snap snip-snapped up the computer's paper and win! "
+      }
+      else if (playerSelection == "paper" && computerSelection == "rock") {
+        playerScore++;
+        return "You wrapped his rock up. You win!"
+      } 
+      else if (playerSelection == "paper" && computerSelection == "scissors") {
+        computerScore++;
+        return "Your paper got snipsnapped by his scissors! You lose!"
+      }
+      else {
+        return "Stop cheating! You only get Rock, Paper, or Scissors"
+      }
+     }
+
+   function finalMessage() {
+     console.log(`${winner} win. ${loser} lose. Play again`)
+     computerScore = 0
+     playerScore = 0
+    }
+     
+   function game() {
+     for (let i = 0; i < 5; i++) {
+     let playerPlay = prompt("Do you pick Rock, Paper, or Scissors?").toLowerCase();
+     console.log(round(playerPlay, computerPlay()))
+     console.log(`Computer: ${computerScore} You: ${playerScore}`)
+     }
+
+     if (playerScore < computerScore) {
+       winner = 'Computer'
+       loser = 'You'
+     }
+     else if (playerScore > computerScore) {
+       winner = 'You'
+       loser = 'Computer'
+     }
+     else {
+       winner = 'Nobody'
+       loser = 'Nobody'
+     }
+     finalMessage()
+   }
+   
+
+    
+
+
+  </script>
+</body>
+</html>
